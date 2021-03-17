@@ -2,6 +2,7 @@ require_relative 'piece'
 require_relative 'pieces'
 require 'byebug'
 
+#Black pieces : row 0 && 1 to start
 class Board
 
   attr_reader :board
@@ -72,9 +73,9 @@ class Board
     board.each_with_index do |row, i|
       row.each_with_index do |el, j|
         if [0,1].include?(i)
-          @board[i][j] = Piece.new(:white, board, [i,j])
-        elsif [6,7].include?(i)
           @board[i][j] = Piece.new(:black, board, [i,j])
+        elsif [6,7].include?(i)
+          @board[i][j] = Piece.new(:white, board, [i,j])
         else 
           @board[i][j] = nil
         end 
