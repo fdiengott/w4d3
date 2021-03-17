@@ -5,7 +5,7 @@ class Bishop < Piece
   include Slideable
 
   def symbol 
-    "\u2657".colorize(color)
+    "\u265D".colorize(color)
   end
 
   protected

@@ -5,7 +5,7 @@ class Knight < Piece
   include Stepable
 
   def symbol 
-    "\u2658".colorize(color)
+    "\u265E".colorize(color)
   end
 
   protected

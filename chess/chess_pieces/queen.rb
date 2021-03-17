@@ -5,7 +5,7 @@ class Queen < Piece
   include Slideable
 
   def symbol 
-    "\u2654".colorize(color)
+    "\u265B".colorize(color)
   end
 
   protected

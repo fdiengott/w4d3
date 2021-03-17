@@ -3,7 +3,7 @@ require_relative "piece"
 class Pawn < Piece
   
   def symbol 
-    "\u2654".colorize(color)
+    "\u265F".colorize(color)
   end
 
   def moves 
@@ -48,6 +48,26 @@ class Pawn < Piece
   end
 
   def side_attacks 
-    # if obj at the dig pos = opposite color we return pos
+    row,col = self.pos
+    valid_moves = []
+
+    #downright for black piece / upleft for white
+    next_pos = [row + forward_dir, col + forward_dir] 
+    valid_moves << next_pos if self.valid_move(next_pos)
+
+    #downleft for black / upright for white
+    next_pos = [row + forward_dir, col - forward_dir] 
+    valid_moves << next_pos if self.valid_move(next_pos)
+    
+    valid_moves
+  end
+
+  def valid_move(pos)
+    if pos[0].between?(0,7) && pos[1].between?(0,7)
+      if !self.board[next_pos].empty? && self.board[next_pos].color != self.color
+        return true
+      end
+    end
+    false
   end
 end

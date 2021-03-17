@@ -5,7 +5,7 @@ class King < Piece
   include Stepable
 
   def symbol 
-    "\u2654".colorize(color)
+    "\u265A".colorize(color)
   end
 
   protected
