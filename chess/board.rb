@@ -66,21 +66,43 @@ class Board
   private 
 
   def null_piece
-    # get the null piece (singleton)
+    NullPiece.instance
   end
 
   def fill_board
     board.each_with_index do |row, i|
       row.each_with_index do |el, j|
-        if [0,1].include?(i)
-          @board[i][j] = Piece.new(:black, board, [i,j])
-        elsif [6,7].include?(i)
-          @board[i][j] = Piece.new(:white, board, [i,j])
-        else 
-          @board[i][j] = nil
-        end 
+        set_back_row(i,:black) if i == 0
+        set_pawns(i,:black) if i == 1
+        
+        @board[i][j] = self.null_piece if (2..5).to_a.include?(i)  
+
+        set_pawns(i,:white) if i == 6
+        set_back_row(i,:white) if i == 7
+        
       end
     end
   end
 
+  def set_back_row(row,color)
+    (0..7).each do |j|
+      if [0,7].include?(j) 
+        @board[row][j] = Rook.new(color, board, [row,j])
+      elsif [1,6].include?(j)
+        @board[row][j] = Knight.new(color, board, [row,j])
+      elsif [2,5].include?(j)
+        @board[row][j] = Bishop.new(color, board, [row,j])
+      elsif j == 3
+        @board[row][j] = Queen.new(color, board, [row,j])
+      elsif j == 4
+        @board[row][j] = King.new(color, board, [row,j])
+      end
+    end
+  end
+
+  def set_pawns(row,color)
+    (0..7).each do |j|
+      @board[row][j] = Pawn.new(color, board, [row,j])
+    end
+  end
 end

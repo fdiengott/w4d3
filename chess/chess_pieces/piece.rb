@@ -20,7 +20,7 @@ class Piece
   end
   
   def inspect
-    "#<#{self.class}, pos: #{pos}, color: #{color}>"
+    "#<#{self.symbol}, pos: #{pos}, color: #{color}>"
   end
   
   def moves
