@@ -7,7 +7,7 @@ class Pawn < Piece
   end
 
   def moves 
-    #call forward_dir
+    forward_steps + side_attacks
   end
 
   private
@@ -36,7 +36,7 @@ class Pawn < Piece
 
     next_pos = [row + forward_dir, col]
 
-    if self.board[next_pos].empty? 
+    if self.board[next_pos].empty? && self.on_board?(next_pos)
       valid_moves << next_pos
       next_pos = [row + (2 * forward_dir),col]
       if self.board[next_pos].empty? && self.at_start_row? 
@@ -63,11 +63,16 @@ class Pawn < Piece
   end
 
   def valid_move(pos)
-    if pos[0].between?(0,7) && pos[1].between?(0,7)
+    if self.on_board?(pos)
       if !self.board[next_pos].empty? && self.board[next_pos].color != self.color
         return true
       end
     end
     false
   end
+
+  def on_board?(pos)
+    pos[0].between?(0,7) && pos[1].between?(0,7)
+  end
+
 end

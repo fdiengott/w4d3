@@ -16,11 +16,11 @@ class Piece
   end
   
   def empty?
-    self.is_a?(NullPiece)
+    false 
   end
   
   def inspect
-    "#<Piece pos: #{pos}, color: #{color}>"
+    "#<#{self.class}, pos: #{pos}, color: #{color}>"
   end
   
   def moves
@@ -38,7 +38,7 @@ class Piece
   
   private 
   def move_into_check?(end_pos)
-
+    
   end
 
 

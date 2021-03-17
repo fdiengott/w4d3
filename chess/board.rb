@@ -1,4 +1,4 @@
-require_relative 'piece'
+require_relative './chess_pieces/piece'
 require_relative 'pieces'
 require 'byebug'
 
