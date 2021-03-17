@@ -10,7 +10,6 @@ class Piece
     @pos = pos
   end
 
-  
   def to_s
     self.symbol
   end
@@ -20,7 +19,7 @@ class Piece
   end
   
   def inspect
-    "#<#{self.symbol}, pos: #{pos}, color: #{color}>"
+    "#<#{self.class}, pos: #{pos}, color: #{color}>"
   end
   
   def moves

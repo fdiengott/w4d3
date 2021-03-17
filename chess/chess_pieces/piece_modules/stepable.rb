@@ -1,3 +1,5 @@
+require 'byebug'
+
 module Stepable
     
   def moves
@@ -7,9 +9,11 @@ module Stepable
       col += dy
 
       if row.between?(0,7) && col.between?(0,7)
-        if board[row,col].empty?
+        new_pos = [row,col]
+        
+        if self.board[new_pos].empty?
           [row,col]
-        elsif board[row,col].color != self.color
+        elsif self.board[new_pos].color != self.color
           [row,col]
         end
       end

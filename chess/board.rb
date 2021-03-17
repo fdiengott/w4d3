@@ -1,4 +1,4 @@
-require_relative './chess_pieces/piece'
+# require_relative './chess_pieces/piece'
 require_relative 'pieces'
 require 'byebug'
 
@@ -11,25 +11,6 @@ class Board
     @board = Array.new(8) { Array.new(8) }
     fill_board
     # place_pieces
-  end
-
-  def place_pieces
-    #4 kn, R, B
-    #2 Q K
-    #16 pwn
-    #16 null_p
-    #TODO: will be abstracted out later
-    knight_pos = [[0,1],[0,6],[7,1],[7,6]]
-    knights = 4.times do |i|
-      if i < 2
-        pos = knight_pos.shift
-        board[pos] = Knight.new(:black, board, pos) 
-      else
-        pos = knight_pos.shift
-        board[pos] = Knight.new(:white, board, pos) 
-      end
-    end
-    # TODO needs more object pieces
   end
 
   def [](pos)
@@ -75,7 +56,7 @@ class Board
         set_back_row(i,:black) if i == 0
         set_pawns(i,:black) if i == 1
         
-        @board[i][j] = self.null_piece if (2..5).to_a.include?(i)  
+        @board[i][j] = null_piece if (2..5).to_a.include?(i)  
 
         set_pawns(i,:white) if i == 6
         set_back_row(i,:white) if i == 7
@@ -87,22 +68,22 @@ class Board
   def set_back_row(row,color)
     (0..7).each do |j|
       if [0,7].include?(j) 
-        @board[row][j] = Rook.new(color, board, [row,j])
+        @board[row][j] = Rook.new(color, self, [row,j])
       elsif [1,6].include?(j)
-        @board[row][j] = Knight.new(color, board, [row,j])
+        @board[row][j] = Knight.new(color, self, [row,j])
       elsif [2,5].include?(j)
-        @board[row][j] = Bishop.new(color, board, [row,j])
+        @board[row][j] = Bishop.new(color, self, [row,j])
       elsif j == 3
-        @board[row][j] = Queen.new(color, board, [row,j])
+        @board[row][j] = Queen.new(color, self, [row,j])
       elsif j == 4
-        @board[row][j] = King.new(color, board, [row,j])
+        @board[row][j] = King.new(color, self, [row,j])
       end
     end
   end
 
   def set_pawns(row,color)
     (0..7).each do |j|
-      @board[row][j] = Pawn.new(color, board, [row,j])
+      @board[row][j] = Pawn.new(color, self, [row,j])
     end
   end
 end

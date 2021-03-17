@@ -9,7 +9,7 @@ class King < Piece
   end
 
   protected
-  def move_dirs
+  def move_diffs
     [
         [0,1], #right
         [1,1], #downright

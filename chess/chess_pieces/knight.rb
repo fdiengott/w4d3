@@ -9,7 +9,7 @@ class Knight < Piece
   end
 
   protected
-  def move_dirs
+  def move_diffs
     changes = [
         [2,1],
         [2,-1],
