@@ -18,9 +18,11 @@ module Slideable
     
     #returns all moves can be done 
     def moves
-        move_dirs.map do |dx,dy|   
-            grow_unblocked_moves_in_dir(dx,dy)
+        valid_moves = []
+        move_dirs.each do |dx,dy|   
+            valid_moves += grow_unblocked_moves_in_dir(dx,dy)
         end
+        valid_moves
     end
 
     #getters
@@ -34,7 +36,6 @@ module Slideable
 
     private
     def move_dirs
-        #overwrtten by subclasses
         raise NotImplementedError
     end
     
@@ -46,8 +47,6 @@ module Slideable
             row += dx
             col += dy
             new_pos = [row, col]
-
-            debugger
 
             if !row.between?(0,7) || !col.between?(0,7)
                 break

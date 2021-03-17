@@ -10,7 +10,6 @@ class Board
   def initialize
     @board = Array.new(8) { Array.new(8) }
     fill_board
-    # place_pieces
   end
 
   def [](pos)
@@ -24,7 +23,7 @@ class Board
   end
 
   def move_piece(start_pos, end_pos)
-    if self[start_pos].nil? #TODO :refactor when we have null pieces
+    if self[start_pos].empty? 
       raise "There is no piece at #{start_pos}."
     end
 
@@ -35,7 +34,7 @@ class Board
     #piece get updated
     self[start_pos].pos = end_pos
     self[end_pos] = self[start_pos]
-    self[start_pos] = nil #TODO :refactor to null pieces
+    self[start_pos] = null_piece 
   end
 
 

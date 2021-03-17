@@ -36,10 +36,10 @@ class Pawn < Piece
 
     next_pos = [row + forward_dir, col]
 
-    if self.board[next_pos].empty? && self.on_board?(next_pos)
+    if self.board[next_pos].empty? && on_board?(next_pos)
       valid_moves << next_pos
       next_pos = [row + (2 * forward_dir),col]
-      if self.board[next_pos].empty? && self.at_start_row? 
+      if self.board[next_pos].empty? && at_start_row? 
         valid_moves << next_pos
       end
     end
@@ -53,18 +53,18 @@ class Pawn < Piece
 
     #downright for black piece / upleft for white
     next_pos = [row + forward_dir, col + forward_dir] 
-    valid_moves << next_pos if self.valid_move(next_pos)
+    valid_moves << next_pos if valid_move(next_pos)
 
     #downleft for black / upright for white
     next_pos = [row + forward_dir, col - forward_dir] 
-    valid_moves << next_pos if self.valid_move(next_pos)
+    valid_moves << next_pos if valid_move(next_pos)
     
     valid_moves
   end
 
   def valid_move(pos)
-    if self.on_board?(pos)
-      if !self.board[next_pos].empty? && self.board[next_pos].color != self.color
+    if on_board?(pos)
+      if !self.board[pos].empty? && self.board[pos].color != self.color
         return true
       end
     end
