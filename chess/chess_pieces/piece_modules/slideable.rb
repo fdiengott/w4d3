@@ -1,3 +1,4 @@
+require 'byebug'
 module Slideable
      
     HORIZONTAL_DIRS = [
@@ -15,8 +16,8 @@ module Slideable
     ].freeze
 
     
+    #returns all moves can be done 
     def moves
-        #returns all moves can be done 
         move_dirs.map do |dx,dy|   
             grow_unblocked_moves_in_dir(dx,dy)
         end
@@ -46,12 +47,14 @@ module Slideable
             col += dy
             new_pos = [row, col]
 
+            debugger
+
             if !row.between?(0,7) || !col.between?(0,7)
                 break
-            elsif board[new_pos].empty?
+            elsif self.board[new_pos].empty?
                 valid_moves << new_pos
             else 
-                if board[new_pos].color != self.color
+                if self.board[new_pos].color != self.color
                     valid_moves << new_pos
                 end
                 

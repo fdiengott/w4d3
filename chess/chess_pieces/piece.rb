@@ -1,7 +1,8 @@
+require 'colorize'
 
 class Piece
   attr_accessor :pos
-  attr_reader :color
+  attr_reader :color, :board
   
   def initialize(color, board, pos)
     @color = color
@@ -9,31 +10,31 @@ class Piece
     @pos = pos
   end
 
-  def moves
-    #TODO : will use move_dirs from module
-    #returns an arry of possible moves
-    raise NotImplementedError 
-  end
-
+  
   def to_s
     self.symbol
   end
-
+  
   def empty?
     self.is_a?(NullPiece)
   end
-
-  # def valid_moves
-  #   #need 
-  # end
-
-  # def symbol
-    
-  # end
-
+  
   def inspect
-     "#<Piece pos: #{pos}, color: #{color}>"
+    "#<Piece pos: #{pos}, color: #{color}>"
   end
+  
+  def moves
+    raise NotImplementedError 
+  end
+
+  def valid_moves
+    raise NotImplementedError
+  end
+  
+  def symbol
+    raise NotImplementedError
+  end
+
   
   private 
   def move_into_check?(end_pos)

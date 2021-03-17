@@ -1,7 +1,7 @@
 module Stepable
     
   def moves
-    move_diffs.map do |dx,dy|
+    valid_moves = move_diffs.map do |dx,dy|
       row,col = self.pos
       row += dx 
       col += dy
@@ -14,6 +14,7 @@ module Stepable
         end
       end
     end
+    valid_moves.reject(&:nil?)
   end
 
   private
