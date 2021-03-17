@@ -38,7 +38,27 @@ module Slideable
     end
     
     def grow_unblocked_moves_in_dir(dx,dy)
+        valid_moves = []
+        row, col = self.pos
 
+        loop do 
+            row += dx
+            col += dy
+            new_pos = [row, col]
+
+            if !row.between?(0,7) || !col.between?(0,7)
+                break
+            elsif board[new_pos].empty?
+                valid_moves << new_pos
+            else 
+                if board[new_pos].color != self.color
+                    valid_moves << new_pos
+                end
+                
+                break
+            end
+        end
+        valid_moves
     end
 end
 
