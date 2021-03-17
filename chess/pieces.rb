@@ -1,0 +1,1 @@
+#require_relative "./chess_pieces/rook.rb"
